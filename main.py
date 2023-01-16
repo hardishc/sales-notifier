@@ -1,10 +1,16 @@
 # selenium 4
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from webdriver_manager.firefox import GeckoDriverManager
 
 options = FirefoxOptions()
+
+# use headless browsing
+#options.add_argument("--headless")
 driver = webdriver.Firefox(options=options)
 
-driver.get("https://www.hollisterco.com/shop/ca/p/oversized-spider-man-graphic-hoodie-47815825?seq=01&categoryId=12635&faceout=model")
+driver.get("https://www2.hm.com/en_ca/productpage.0975845001.html")
+price = driver.find_element(By.XPATH, "//*[contains(@class,'price') or contains(@class,'Price')]").text
+print(price)
+driver.quit
